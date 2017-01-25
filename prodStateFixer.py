@@ -25,7 +25,7 @@ for d in dmd.Devices.getSubDevicesGen():
     try:
       dps = d.getProductionState()
     except:
-      print '>>> Device %s is missing it's production state' % d.id
+      print '>>> Device %s is missing its production state' % d.id
       broken_devices.append(d)
 
 if len(broken_devices) == 0:
