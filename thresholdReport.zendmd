@@ -1,3 +1,4 @@
+print 'Path, ID, Max, Min, Description, Datasource Names'
 for template in dmd.Devices.getAllRRDTemplates():
     for threshold in template.thresholds():
         tpath = threshold.getPrimaryId().split('/rrdTemplates')[0].replace('/zport/dmd','')
