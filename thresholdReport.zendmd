@@ -1,4 +1,3 @@
-print 'Path, ID, Max, Min, Description, Datasource Names'
 for template in dmd.Devices.getAllRRDTemplates():
     for threshold in template.thresholds():
         tpath = threshold.getPrimaryId().split('/rrdTemplates')[0].replace('/zport/dmd','')
@@ -19,4 +18,5 @@ for template in dmd.Devices.getAllRRDTemplates():
             dsnames = '|'.join(threshold.dsnames)
         except:
             dsnames = None
-        print '%s,%s,%s,%s,%s,%s' % (tpath, tid, tmax, tmin, tdesc, dsnames)
+        if '/devices/' not in tpath:
+            print '%s,%s,%s,%s,%s,%s' % (tpath, tid, tmax, tmin, tdesc, dsnames)
