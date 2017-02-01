@@ -1,0 +1,11 @@
+print 'Device Class, Template ID, Datasource ID, Type, Datapoint ID'
+for template in dmd.Devices.getAllRRDTemplates():
+    for datasource in template.datasources():
+        dspath = datasource.getPrimaryId().split('/rrdTemplates')[0].replace('/zport/dmd','')
+        tid = template.id
+        dsid = datasource.id
+        dstype = datasource.__class__.__name__
+        for dp in datasource.datapoints():
+            dpid = dp.id
+            if '/devices/' not in dspath:
+                print '%s,%s,%s,%s,%s' % (dspath, tid, dsid, dstype, dpid)
