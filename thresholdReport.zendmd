@@ -1,0 +1,21 @@
+for template in dmd.Devices.getAllRRDTemplates():
+    for threshold in template.thresholds():
+        tpath = threshold.getPrimaryId().split('/rrdTemplates')[0].replace('/zport/dmd','')
+        tid = threshold.id
+        try:
+            tmax = threshold.maxval
+        except:
+            tmax = None
+        try:
+            tmin = threshold.minval
+        except:
+            tmin = None
+        try:
+            tdesc = threshold.description
+        except:
+            tdesc = None
+        try:
+            dsnames = '|'.join(threshold.dsnames)
+        except:
+            dsnames = None
+        print '%s,%s,%s,%s,%s,%s' % (tpath, tid, tmax, tmin, tdesc, dsnames)
