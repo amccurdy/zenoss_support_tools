@@ -28,14 +28,14 @@ for d in dmd.Devices.getSubDevicesGen():
       print '>>> Device %s is missing its production state' % d.id
       broken_devices.append(d)
 
-if len(broken_devices) == 0:
-    print 'No devices to fix.'
-    sys.exit(1)
-      
 # if the arg is 'fix' then set their prodState to 1000 (production)
 if sys.argv[1] == 'fix':
-    print 'Cleaning devices...'
-    for d in broken_devices:
-        print 'Setting %s to production' % d.id
-        d._setProductionState(1000)
-        commit()
+    if len(broken_devices) == 0:
+        print 'No devices to fix.'
+        sys.exit(1)
+    else: 
+        print 'Cleaning devices...'
+        for d in broken_devices:
+            print 'Setting %s to production' % d.id
+            d._setProductionState(1000)
+            commit()
